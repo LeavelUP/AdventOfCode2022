@@ -11,25 +11,24 @@ namespace AdventOfCode2022.Day_2
 {
     class RockPaperScissors
     {
-        List<string> strategyGuide = new List<string>(File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 2\Guide.txt"));
-        Dictionary<char, string> encryption = new Dictionary<char, string>()
+        public int ScoreCalculator(List<string> guide)
         {
-            {'A', "Rock"},{'X', "Rock"},
-            {'B', "Paper"},{'Y', "Paper"},
-            {'C', "Scissors"},{'Z', "Scissors"}
-        };
-
-        public int ScoreCalculator()
-        {
-            int score = 0;
-            for (int i = 0; i < strategyGuide.Count(); i++)
+            Dictionary<char, string> encryption = new Dictionary<char, string>()
             {
-                char[] input = strategyGuide[i].ToCharArray();
+                {'A', "Rock"},{'X', "Rock"},
+                {'B', "Paper"},{'Y', "Paper"},
+                {'C', "Scissors"},{'Z', "Scissors"}
+            };
+
+            int score = 0;
+            for (int i = 0; i < guide.Count(); i++)
+            {
+                char[] input = guide[i].ToCharArray();
                 if (input[2] == 'X') score += 1;
                 else if (input[2] == 'Y') score += 2;
                 else if (input[2] == 'Z') score += 3;
 
-                //draw conditions - both inputs(keys) == same value
+                //draw conditions
                 if (encryption[input[0]] == encryption[input[2]]) score += 3;
                 //win conditions
                 else if (encryption[input[0]] == "Rock" && encryption[input[2]] == "Paper" ||
@@ -41,16 +40,29 @@ namespace AdventOfCode2022.Day_2
             return score;
         }
 
-        public int UpdatedScoreCalculator()
+        public int NewScoreCalculator(List<string> guide)
         {
             int score = 0;
-            for (int i = 0; i < strategyGuide.Count(); i++)
+            for (int i = 0; i < guide.Count(); i++)
             {
-                char[] input = strategyGuide[i].ToCharArray();
-                if (input[2] == 'X') score += 1;
-                else if (input[2] == 'Y') score += 2;
-                else if (input[2] == 'Z') score += 3;
+                char[] input = guide[i].ToCharArray();
+                if (input[2] == 'X') score += 0;
+                else if (input[2] == 'Y') score += 3;
+                else if (input[2] == 'Z') score += 6;
+
+                //conditions we throw Rock (draw rock / win scissors / lose paper)
+                if (input[0] == 'A' && input[2] == 'Y' ||
+                    input[0] == 'B' && input[2] == 'X' ||
+                    input[0] == 'C' && input[2] == 'Z') score += 1;
+                //conditions we throw Paper (draw paper / win rock / lose scissors)
+                else if (input[0] == 'B' && input[2] == 'Y' ||
+                    input[0] == 'C' && input[2] == 'X' ||
+                    input[0] == 'A' && input[2] == 'Z') score += 2;
+                //conditions we throw scissors (anything else)
+                else score += 3;
             }
+            return score;
+        }
     }
 }
 

@@ -9,30 +9,28 @@ namespace AdventOfCode2022.Day_1
 {
     class CalorieCounter
     {
-        List<string> calorieList = new List<string>(File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 1\Calories.txt"));
-
-        public int MaxCalories()
+        public int MaxCalories(List<string> calories)
         {
             int currentMax = 0;
             int absoluteMax = 0;
-            for (int i = 0; i < calorieList.Count(); i++)
+            for (int i = 0; i < calories.Count(); i++)
             {
-                if (calorieList[i] == "" && currentMax > absoluteMax)
+                if (calories[i] == "" && currentMax > absoluteMax)
                 {
                     absoluteMax = currentMax;
                     currentMax = 0;
                 }
-                else if (calorieList[i] == "" && currentMax <= absoluteMax)
+                else if (calories[i] == "" && currentMax <= absoluteMax)
                 {
                     currentMax = 0;
                 }
                 else
                 {
-                    currentMax += Convert.ToInt32(calorieList[i]);
+                    currentMax += Convert.ToInt32(calories[i]);
                 }
 
                 //capture the last element of the list for comparison
-                if (i == calorieList.Count() - 1 && currentMax > absoluteMax)
+                if (i == calories.Count() - 1 && currentMax > absoluteMax)
                 {
                     absoluteMax = currentMax;
                 }
@@ -40,25 +38,25 @@ namespace AdventOfCode2022.Day_1
             return absoluteMax;
         }
 
-        public int TopThreeCalories()
+        public int TopThreeCalories(List<string> calories)
         {
             int currentMax = 0;
             List<int> caloriesPerElf = new List<int>();
             List<int> maxCalorieElves = new List<int>();
-            for (int i = 0; i < calorieList.Count(); i++)
+            for (int i = 0; i < calories.Count(); i++)
             {
-                if (calorieList[i] == "")
+                if (calories[i] == "")
                 {
                     caloriesPerElf.Add(currentMax);
                     currentMax = 0;
                 }
-                else if (i == calorieList.Count() - 1)
+                else if (i == calories.Count() - 1)
                 {
                     caloriesPerElf.Add(currentMax);
                 }
                 else
                 {
-                    currentMax += Convert.ToInt32(calorieList[i]);
+                    currentMax += Convert.ToInt32(calories[i]);
                 }                
             }
 
