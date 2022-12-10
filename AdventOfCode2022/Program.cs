@@ -1,6 +1,8 @@
 ﻿using AdventOfCode2022.Day_1;
 using AdventOfCode2022.Day_2;
 using AdventOfCode2022.Day_3;
+using AdventOfCode2022.Day_4;
+using AdventOfCode2022.Day_5;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,6 +40,24 @@ namespace AdventOfCode2022
             var D3P2 = new Reorganizer().BadgePriority(contents);
             var D3P2TEST = new Reorganizer().BadgePriority(testContents);
             Console.WriteLine("Day 3.2 Test: " + D3P2TEST + " // Day 3.2 Answer: " + D3P2 + "\n");
+
+            List<string> sections = new List<string>(File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 4\Sections.txt"));
+            List<string> testSections = new List<string>(File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 4\SectionsTest.txt"));
+            var D4P1 = new CampCleanup().FindContainers(sections);
+            var D4P1TEST = new CampCleanup().FindContainers(testSections);
+            Console.WriteLine("Day 4.1 Test: " + D4P1TEST + " // Day 4.1 Answer: " + D4P1);
+            var D4P2 = new CampCleanup().FindOverlaps(sections);
+            var D4P2TEST = new CampCleanup().FindOverlaps(testSections);
+            Console.WriteLine("Day 4.2 Test: " + D4P2TEST + " // Day 4.2 Answer: " + D4P2 + "\n");
+
+            List<string> supplies = new List<string>(File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 5\Supplies.txt"));
+            List<string> testSupplies = new List<string>(File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 5\SuppliesTest.txt"));
+            var D5P1 = new SupplyStacks().FindTopCrates(supplies);
+            var D5P1TEST = new SupplyStacks().FindTopCrates(testSupplies);
+            Console.WriteLine("Day 5.1 Test: " + D5P1TEST + " // Day 5.1 Answer: " + D5P1);
+            var D5P2 = new SupplyStacks();
+            var D5P2TEST = new SupplyStacks();
+            Console.WriteLine("Day 5.2 Test: " + D5P2TEST + " // Day 5.2 Answer: " + D5P2 + "\n");
         }
     }
 }
