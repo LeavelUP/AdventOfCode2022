@@ -9,7 +9,8 @@ namespace AdventOfCode2022.Day_4
 {
     class CampCleanup
     {
-        public int FindContainers(List<string> assignments)
+        string[] assignments = File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 4\Sections.txt");
+        public int FindContainers()
         {
             int badPairs = 0;
             foreach (string assignment in assignments)
@@ -26,7 +27,7 @@ namespace AdventOfCode2022.Day_4
             return badPairs;
         }
 
-        public int FindOverlaps(List<string> assignments)
+        public int FindOverlaps()
         {
             int badPairs = 0;
             foreach (string assignment in assignments)

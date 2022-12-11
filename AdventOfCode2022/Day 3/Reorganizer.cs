@@ -8,9 +8,10 @@ namespace AdventOfCode2022.Day_3
 {
     class Reorganizer
     {
-        char[] priorities = " abcdefghijklmnopqrstuvwqyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+        string[] items = File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 3\Contents.txt");
+        readonly char[] priorities = " abcdefghijklmnopqrstuvwqyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
-        public int ItemPriority(List<string> items)
+        public int ItemPriority()
         {
             int priority = 0;
             foreach (string item in items)
@@ -26,12 +27,12 @@ namespace AdventOfCode2022.Day_3
             return priority;
         }
 
-        public int BadgePriority(List<string> badges)
+        public int BadgePriority()
         {
             int priority = 0;
-            for(int i = 0; i < badges.Count; i += 3)
+            for(int i = 0; i < items.Count(); i += 3)
             {
-                char badgeType = compareRucksacks(badges[i], badges[i + 1], badges[i + 2]);
+                char badgeType = compareRucksacks(items[i], items[i + 1], items[i + 2]);
                 int badgePriority = Array.IndexOf(priorities, badgeType);
 
                 priority += badgePriority;

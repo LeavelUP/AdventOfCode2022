@@ -11,7 +11,8 @@ namespace AdventOfCode2022.Day_2
 {
     class RockPaperScissors
     {
-        public int ScoreCalculator(List<string> guide)
+        string[] guide = File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 2\Guide.txt");
+        public int ScoreCalculator()
         {
             Dictionary<char, string> encryption = new Dictionary<char, string>()
             {
@@ -40,7 +41,7 @@ namespace AdventOfCode2022.Day_2
             return score;
         }
 
-        public int NewScoreCalculator(List<string> guide)
+        public int NewScoreCalculator()
         {
             int score = 0;
             for (int i = 0; i < guide.Count(); i++)

@@ -9,7 +9,9 @@ namespace AdventOfCode2022.Day_1
 {
     class CalorieCounter
     {
-        public int MaxCalories(List<string> calories)
+        string[] calories = File.ReadAllLines(@"C:\Users\Logan\source\repos\AdventOfCode2022\AdventOfCode2022\Day 1\Calories.txt");
+
+        public int MaxCalories()
         {
             int currentMax = 0;
             int absoluteMax = 0;
@@ -38,7 +40,7 @@ namespace AdventOfCode2022.Day_1
             return absoluteMax;
         }
 
-        public int TopThreeCalories(List<string> calories)
+        public int TopThreeCalories()
         {
             int currentMax = 0;
             List<int> caloriesPerElf = new List<int>();
